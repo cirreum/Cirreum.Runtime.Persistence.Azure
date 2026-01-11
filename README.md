@@ -1,4 +1,4 @@
-# Cirreum.Runtime.Persistence
+# Cirreum.Runtime.Persistence.Azure
 
 [![NuGet Version](https://img.shields.io/nuget/v/Cirreum.Runtime.Persistence.Azure.svg?style=flat-square&labelColor=1F1F1F&color=003D8F)](https://www.nuget.org/packages/Cirreum.Runtime.Persistence.Azure/)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/Cirreum.Runtime.Persistence.Azure.svg?style=flat-square&labelColor=1F1F1F&color=003D8F)](https://www.nuget.org/packages/Cirreum.Runtime.Persistence.Azure/)
