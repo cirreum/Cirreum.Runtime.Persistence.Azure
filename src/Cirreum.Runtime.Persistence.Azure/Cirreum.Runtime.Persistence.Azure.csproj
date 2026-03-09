@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<Description>The Runtime Persistence service configuration for Azure.</Description>
@@ -6,8 +6,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Cirreum.Persistence.Azure" Version="1.0.31" />
-		<PackageReference Include="Cirreum.Runtime.ServiceProvider" Version="1.0.6" />
+		<PackageReference Include="Cirreum.Persistence.Azure" Version="1.0.33" />
+		<PackageReference Include="Cirreum.Runtime.ServiceProvider" Version="1.0.8" />
 	</ItemGroup>
 
 </Project>
