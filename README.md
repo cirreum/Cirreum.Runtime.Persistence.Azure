@@ -46,10 +46,39 @@ This automatically:
 ## Features
 
 - **Simple Integration**: One method to configure all persistence needs
-- **Multi-Provider Support**: Built-in support for both NoSQL (Cosmos DB) and relational (SQL Server) databases
+- **Declarative Indexing Policies**: Entity attribute-driven Cosmos DB indexing configuration (included/excluded paths, composite indexes, spatial indexes)
 - **Health Checks**: Automatic health check registration for monitoring
 - **Duplicate Prevention**: Smart registration prevents service conflicts
 - **Extensible Design**: Built on the Cirreum service provider pattern for easy extension
+
+## Declarative Indexing Policy
+
+When `IsAutoResourceCreationEnabled` is `true`, Cosmos DB containers are auto-created with indexing policies defined on your entity classes via attributes from [`Cirreum.Persistence.NoSql`](https://github.com/cirreum/Cirreum.Persistence.NoSql):
+
+```csharp
+[Container("tasks")]
+[PartitionKeyPath("/clientId")]
+[IndexingPolicy(IndexingMode.Consistent, Automatic = true)]
+[ExcludedPath("/description/*")]
+[ExcludedPath("/*")]
+public record TaskItem : Entity {
+
+    [IncludedPath]
+    [CompositeIndex("type-client-date", CompositePathSortOrder.Ascending, position: 0)]
+    public string Type { get; set; }
+
+    [IncludedPath]
+    [CompositeIndex("type-client-date", CompositePathSortOrder.Ascending, position: 1)]
+    public string ClientId { get; set; }
+
+    [IncludedPath]
+    [CompositeIndex("type-client-date", CompositePathSortOrder.Descending, position: 2)]
+    public DateTimeOffset CreatedAt { get; set; }
+
+}
+```
+
+Entities without `[IndexingPolicy]` use the Cosmos DB default policy (auto-index all paths). For full attribute documentation, see [Cirreum.Persistence.NoSql](https://github.com/cirreum/Cirreum.Persistence.NoSql) and [Cirreum.Persistence.Azure](https://github.com/cirreum/Cirreum.Persistence.Azure).
 
 ## Configuration
 
